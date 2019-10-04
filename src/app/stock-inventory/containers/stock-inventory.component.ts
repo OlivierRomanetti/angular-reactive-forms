@@ -33,7 +33,16 @@ export class StockInventoryComponent {
     });
   }
 
+  addStock(stock) {
+    const control = this.form.get('stock') as FormArray;
+    control.push(this.createStock(stock));
+  }
+  removeStock({ group, index }) {
+    const control = this.form.get('stock') as FormArray;
+    control.removeAt(index);
+  }
+
   onSubmit() {
-    console.log(this.form.value);
+    //console.log(this.form.value);
   }
 }

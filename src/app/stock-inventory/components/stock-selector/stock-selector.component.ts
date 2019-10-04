@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Product } from '../../models/product.interface';
+import { Product, Stock } from '../../models/product.interface';
 
 @Component({
   selector: 'app-stock-selector',
@@ -13,4 +13,13 @@ export class StockSelectorComponent {
 
   @Input()
   products: Product[];
+
+  @Output()
+  added = new EventEmitter<any>();
+
+  onAdd() {
+    const stock = this.parent.get('selector').value;
+    console.log('stock', stock);
+    this.added.emit(stock);
+  }
 }
